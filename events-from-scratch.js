@@ -22,9 +22,9 @@ module.exports = class NewEmitter {
     }
     return this;
   }
-//   off(event) {
-//     return this.RemoveEvent(event);
-//   }
+  off(event) {
+    return this.RemoveEvent(event);
+  }
 
   // Produce(){}
 };
