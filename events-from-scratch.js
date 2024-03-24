@@ -6,11 +6,9 @@ module.exports = class NewEmitter {
     this.events[event].push(fn);
     return this;
   }
-
   On(event, fn) {
     return this.AddEvent(event, fn);
   }
-
   Once(event, fn) {
     this.events[event] = this.events[event] || [];
     const Once = () => {
@@ -20,7 +18,6 @@ module.exports = class NewEmitter {
     this.events[event].push(Once);
     return this;
   }
-
   RemoveEvent(event, fn) {
     const Events = this.events;
     for (const targetEvent in Events) {
@@ -45,11 +42,17 @@ module.exports = class NewEmitter {
   }
 
   Produce(event, ...args) {
-    let fns = this.events[event];
-    if (!fns) return `there is no function attached to this event ${event}`;
-    for (let fn of fns) {
-      fn(...args);
+    if (this.events[event]) {
+      this.events[event].forEach((callback) => callback(...args));
     }
-    return true;
+  }
+
+  Before(event, fn) {
+    const Event = this.events[event];
+    if (Event) {
+      this.events[Event] = [fn, ...Event];
+    } else {
+      this.events[event] = [fn];
+    }
   }
 };
