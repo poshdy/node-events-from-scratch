@@ -9,7 +9,7 @@ events.Once("test 3", () => console.log("Test Once Method"));
 
 events.After("test", () => console.log("after test"));
 
-events.EventNames();
+events.Consumers();
 events.Produce("test");
 // events.Produce("test 2");
 // events.Produce("test 2");
