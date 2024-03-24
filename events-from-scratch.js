@@ -30,6 +30,12 @@ module.exports = class NewEmitter {
   off(event) {
     return this.RemoveEvent(event);
   }
+  RemoveAllEvents() {
+    const Events = this.events;
+    for (const event in Events) {
+      delete Events[event];
+    }
+  }
   Consumers(event) {
     const targetEvent = this.events[event];
     return targetEvent;
@@ -41,8 +47,10 @@ module.exports = class NewEmitter {
     }
   }
   Produce(event, ...args) {
-    if (this.events[event]) {
-      this.events[event].forEach((callback) => callback(...args));
+    const fns = this.events[event];
+    if (!fns) return false;
+    for (const fn of fns) {
+      fn(...args);
     }
   }
   Before(event, fn) {
