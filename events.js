@@ -1,20 +1,6 @@
-const events = require("node:events");
+const Events = require("./events-from-scratch");
 
-const messi = new events();
+const events = new Events();
 
-messi.prependListener("hi", () => {
-  console.log("Hi from  prepend");
-});
-// messi.on("hi", () => {
-//   console.log("Hi from on ");
-// });
-messi.on("hello", () => {
-  console.log("Hello");
-});
-
-// messi.on("hi", () => {
-//   console.log("hi from on");
-// });
-
-messi.emit("hi");
-messi.emit("hello");
+events.AddEvent("hi", () => console.log("hi"));
+console.log();
