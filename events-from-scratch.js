@@ -1,26 +1,30 @@
 module.exports = class NewEmitter {
   events = {};
 
-  On(event, fn) {
-    return this.AddEvent(event, fn);
-  }
-
-  // once(){}
-
-  // off(){}
-
-  //   RemoveEvent(event, fn) {
-  //     const Event = this.events[event];
-  //     if (Event) return `There is no event called ${event}`;
-  //   }
-
   AddEvent(event, fn) {
     this.events[event] = this.events[event] || [];
     this.events[event].push(fn);
     return this;
   }
 
-  // Produce(){}
+  On(event, fn) {
+    return this.AddEvent(event, fn);
+  }
 
-  // AddEvent(){}
+  // once(){}
+
+  RemoveEvent(event, fn) {
+    const Events = this.events;
+    for (const targetEvent in Events) {
+      if (event == targetEvent) {
+        delete Events[event];
+      }
+    }
+    return this;
+  }
+//   off(event) {
+//     return this.RemoveEvent(event);
+//   }
+
+  // Produce(){}
 };
