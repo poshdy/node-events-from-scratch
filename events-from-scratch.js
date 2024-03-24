@@ -29,6 +29,12 @@ module.exports = class NewEmitter {
     const targetEvent = this.events[event];
     return targetEvent;
   }
+  EventNames() {
+    const Events = this.events;
+    for (const event in Events) {
+      console.log(event);
+    }
+  }
 
   // Produce(){}
 };

@@ -8,6 +8,7 @@ events.AddEvent("hello", () => console.log("hi"));
 // console.log(events.events);
 // events.off("hi");
 console.log(events.events);
-console.log(events.Consumers("hi"));
+// console.log(events.Consumers("hi"));
+events.EventNames();
 // events.RemoveEvent("hi");
 // console.log(events.events)
