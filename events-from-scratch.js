@@ -25,6 +25,10 @@ module.exports = class NewEmitter {
   off(event) {
     return this.RemoveEvent(event);
   }
+  Consumers(event) {
+    const targetEvent = this.events[event];
+    return targetEvent;
+  }
 
   // Produce(){}
 };
