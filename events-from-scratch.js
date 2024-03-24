@@ -1,7 +1,9 @@
 module.exports = class NewEmitter {
   events = {};
 
-  // on(){}
+  On(event, fn) {
+    return this.AddEvent(event, fn);
+  }
 
   // once(){}
 
