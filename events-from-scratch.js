@@ -40,17 +40,23 @@ module.exports = class NewEmitter {
       console.log(event);
     }
   }
-
   Produce(event, ...args) {
     if (this.events[event]) {
       this.events[event].forEach((callback) => callback(...args));
     }
   }
-
   Before(event, fn) {
     const Event = this.events[event];
     if (Event) {
-      this.events[Event] = [fn, ...Event];
+      this.events[event] = [fn, ...Event];
+    } else {
+      this.events[event] = [fn];
+    }
+  }
+  After(event, fn) {
+    const Events = this.events[event];
+    if (Events) {
+      this.events[event] = [...Events, fn];
     } else {
       this.events[event] = [fn];
     }
