@@ -1,13 +1,19 @@
 const Events = require("./events-from-scratch");
 const events = new Events();
+
 events.Before("test", () => console.log("before test"));
-events.AddEvent("test", () => console.log("test"));
-events.AddEvent("test2", () => console.log("test2"));
+
+events.AddEvent("test", () => console.log("Test AddEvent Method"));
+events.On("test 2", () => console.log("Test On Method"));
+events.Once("test 3", () => console.log("Test Once Method"));
+
 events.After("test", () => console.log("after test"));
 
-console.log(events.events);
+events.EventNames();
 events.Produce("test");
-events.Produce("test2");
+// events.Produce("test 2");
+// events.Produce("test 2");
+// events.Produce("test 3");
+// events.Produce("test 3");
 
-events.RemoveAllEvents();
-console.log(events.events);
+// console.log(events.events);

@@ -38,7 +38,7 @@ module.exports = class NewEmitter {
   }
   Consumers(event) {
     const targetEvent = this.events[event];
-    return targetEvent;
+    console.log(targetEvent);
   }
   EventNames() {
     const Events = this.events;
@@ -47,9 +47,9 @@ module.exports = class NewEmitter {
     }
   }
   Produce(event, ...args) {
-    const fns = this.events[event];
-    if (!fns) return false;
-    for (const fn of fns) {
+    const functions = this.events[event];
+    if (!functions) return false;
+    for (const fn of functions) {
       fn(...args);
     }
   }
