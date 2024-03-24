@@ -11,7 +11,15 @@ module.exports = class NewEmitter {
     return this.AddEvent(event, fn);
   }
 
-  // once(){}
+  Once(event, fn) {
+    this.events[event] = this.events[event] || [];
+    const Once = () => {
+      fn();
+      this.off(event, fn);
+    };
+    this.events[event].push(Once);
+    return this;
+  }
 
   RemoveEvent(event, fn) {
     const Events = this.events;
@@ -36,5 +44,12 @@ module.exports = class NewEmitter {
     }
   }
 
-  // Produce(){}
+  Produce(event, ...args) {
+    let fns = this.events[event];
+    if (!fns) return `there is no function attached to this event ${event}`;
+    for (let fn of fns) {
+      fn(...args);
+    }
+    return true;
+  }
 };
